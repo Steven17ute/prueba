@@ -42,6 +42,7 @@
             overflow: hidden; 
             border-radius: 10px;
             margin-top: 15px;
+            background: #000;
         }
         .video-container iframe {
             position: absolute; 
@@ -172,10 +173,8 @@
         function cerrarAyuda() {
             const modal = document.getElementById('modalAyuda');
             const iframe = document.getElementById('videoTutorial');
-            // Resetear el src para detener el video por completo
-            const url = iframe.src;
-            iframe.src = '';
-            iframe.src = url;
+            // Recargar el SRC para detener el video
+            iframe.src = "https://www.youtube.com/embed/S-2LGtmg6S4";
             modal.style.display = "none";
         }
 
