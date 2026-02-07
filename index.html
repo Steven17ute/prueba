@@ -98,8 +98,10 @@
             <h2 data-i18n="help_title" style="color: #7c3aed;">Tutorial de Uso</h2>
             <div class="video-container">
                 <iframe id="videoTutorial" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                    frameborder="0" allowfullscreen>
+                    src="https://www.youtube.com/embed/S-2LGtmg6S4" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
                 </iframe>
             </div>
         </div>
@@ -126,7 +128,6 @@
     </footer>
 
     <script>
-        // 1. DICCIONARIO ACTUALIZADO CON AYUDA
         const I18N = {
             esp: {
                 nav_home: "Inicio", nav_events: "Eventos", nav_contacts: "Contactos", nav_locations: "Ubicaciones",
@@ -154,19 +155,16 @@
             }
         };
 
-        // 2. FUNCIÓN DE TRADUCCIÓN
         function setLanguage(lang) {
             localStorage.setItem('lang', lang);
             document.documentElement.lang = (lang === 'esp') ? 'es' : 'en';
             const texts = I18N[lang];
-
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (texts[key]) el.textContent = texts[key];
             });
         }
 
-        // 3. FUNCIONES DEL MODAL DE VIDEO
         function abrirAyuda() {
             document.getElementById('modalAyuda').style.display = "block";
         }
@@ -174,20 +172,18 @@
         function cerrarAyuda() {
             const modal = document.getElementById('modalAyuda');
             const iframe = document.getElementById('videoTutorial');
-            // Detener el video al cerrar
+            // Resetear el src para detener el video por completo
             const url = iframe.src;
             iframe.src = '';
             iframe.src = url;
             modal.style.display = "none";
         }
 
-        // Cerrar si hacen clic fuera del modal
         window.onclick = function(event) {
             const modal = document.getElementById('modalAyuda');
             if (event.target == modal) { cerrarAyuda(); }
         }
 
-        // 4. INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('lang') || 'esp';
             setLanguage(savedLang);
